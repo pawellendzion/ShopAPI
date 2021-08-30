@@ -1,0 +1,122 @@
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\appsettings.Development.json
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\appsettings.json
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.exe
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.deps.json
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.runtimeconfig.json
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.runtimeconfig.dev.json
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\ref\ServerAPI.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.pdb
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Humanizer.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.OpenApi.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\System.Runtime.Caching.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\Projekty\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.csprojAssemblyReference.cache
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.AssemblyInfoInputs.cache
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.AssemblyInfo.cs
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.csproj.CoreCompileInputs.cache
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.MvcApplicationPartsAssemblyInfo.cs
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.MvcApplicationPartsAssemblyInfo.cache
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\staticwebassets\ServerAPI.StaticWebAssets.Manifest.cache
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\staticwebassets\ServerAPI.StaticWebAssets.xml
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\scopedcss\bundle\ServerAPI.styles.css
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.RazorTargetAssemblyInfo.cache
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.csproj.CopyComplete
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.dll
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ref\ServerAPI.dll
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.pdb
+E:\Projekty\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.genruntimeconfig.cache
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\appsettings.Development.json
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\appsettings.json
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.exe
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.deps.json
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.runtimeconfig.json
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.runtimeconfig.dev.json
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\ref\ServerAPI.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\ServerAPI.pdb
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Humanizer.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Microsoft.OpenApi.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\System.Runtime.Caching.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.csproj.AssemblyReference.cache
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.GeneratedMSBuildEditorConfig.editorconfig
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.AssemblyInfoInputs.cache
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.AssemblyInfo.cs
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.csproj.CoreCompileInputs.cache
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.MvcApplicationPartsAssemblyInfo.cs
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.MvcApplicationPartsAssemblyInfo.cache
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\staticwebassets\ServerAPI.StaticWebAssets.Manifest.cache
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\staticwebassets\ServerAPI.StaticWebAssets.xml
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\scopedcss\bundle\ServerAPI.styles.css
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.RazorTargetAssemblyInfo.cache
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.csproj.CopyComplete
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ref\ServerAPI.dll
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.pdb
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.genruntimeconfig.cache

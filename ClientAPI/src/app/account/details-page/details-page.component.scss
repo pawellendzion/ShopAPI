@@ -1,0 +1,57 @@
+.wrapper {
+    background-color: var(--light-gray);
+    height: Calc(100vh - var(--nav-height));
+    color: var(--light-green);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: system-ui;
+
+    h1 {
+        text-align: center;
+        font-size: 3em;
+    }
+
+    > div {
+        margin-bottom: var(--nav-height);
+        background-color: var(--dark-gray);  
+        border-radius: 24px;
+        padding: 20px;
+        width: fit-content;
+
+        > div {
+            width: fit-content;
+            margin: auto;
+        }
+    }
+}
+
+table {
+
+    tr {
+        
+        :nth-child(1) {
+            text-align: right;
+        }
+    }
+}
+.btn-con {
+    width: fit-content;
+    margin: auto;
+
+    button {
+        margin-top: 20px;
+        padding: 15px;
+        width: 150px;
+        border-radius: 25px;
+        background-color: var(--dark-gray);
+        color: var(--light-green);
+        border: 1px solid var(--light-green);
+
+        &:hover {
+            background-color: var(--light-green);
+            color: var(--dark-gray);
+        }
+    }
+}

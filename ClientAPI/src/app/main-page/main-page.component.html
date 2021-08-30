@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <div *ngFor="let items of news">
+        <img [src]=items.dbPath>
+        <div>
+            <h1>New {{items.category}}</h1>
+            <p>{{items.name}}</p>
+            <p>{{items.price | currency: 'PLN':'symbol-narrow':undefined:'pl'}}</p>
+            <p><a routerLink="../products/details/{{items.id}}">View details</a></p>
+        </div>
+    </div>
+</div>

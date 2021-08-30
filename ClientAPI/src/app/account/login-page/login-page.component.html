@@ -1,0 +1,58 @@
+<div class="wrapper">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <p>LOGIN</p>
+    <div *ngIf="incorrect">
+      <div class="alert">
+          Email or password is incorrect.
+      </div>
+    </div>
+    <!--email-->
+    <div class="form-element">
+      <!--alert box start-->
+      <div>
+        <div
+          class="alert"
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+        >
+          <div *ngIf="email.errors?.required">Email is required!</div>
+          <div *ngIf="email.errors?.email">Invalid email!</div>
+        </div>
+      </div>
+      <!--alert box end-->
+      <input
+        formControlName="email"
+        autocomplete="off"
+        id="email"
+      />
+      <label for="email">Email</label>
+    </div>
+
+    <br />
+
+    <!--password-->
+    <div class="form-element">
+      <!--alert box start-->
+      <div>
+        <div
+          class="alert"
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+        >
+          <div *ngIf="password.errors?.required">Password is required!</div>
+        </div>
+      </div>
+      <!--alert box end-->
+      <input
+        formControlName="password"
+        id="Passwd"
+        type="password"
+      />
+      <label for="Passwd">Password</label>
+    </div>
+
+    <br />
+
+    <button type="submit">Login</button>
+
+    <p class="register"><a routerLink="../register">New? Register here now!</a></p>
+  </form>
+</div>

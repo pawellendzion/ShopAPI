@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <div>
+        <div class="img-con">
+            <img [src]="product?.dbPath">
+        </div>
+        <div>
+            <h2>{{product?.name}}</h2>
+            <p>{{product?.price | currency: "PLN":"symbol-narrow":undefined:"pl"}}</p>
+            <div *ngIf="product?.category === 'laptop'">
+                <p>cpu: {{product?.cpu}}</p>
+                <p>graphic: {{product?.graphic}}</p>
+                <p>screenSize: {{product?.screenSize}}</p>
+            </div>
+        </div>
+    </div>
+</div>

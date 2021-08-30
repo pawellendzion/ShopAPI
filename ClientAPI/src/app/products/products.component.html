@@ -1,0 +1,34 @@
+<div class="wrapper">
+    <div class="filter" (click)="sideBar()">Filter</div>
+    <div id="left">
+        <h1>FILTER</h1>
+        <div>
+            <label>Price</label>
+
+            <div><input id="from" type="number" value="0"> - <input id="to" type="number" value="100000"></div>
+
+            <select #category (change)="changeFilter(null)">
+                <option value="">-choose type of product-</option>
+                <option value="laptop">laptop</option>
+                <option value="laptopBag">laptop bag</option>
+            </select>
+            
+            <app-laptop-filter *ngIf="category.value === 'laptop'" (filterEvent)="changeFilter($event)"></app-laptop-filter>
+            <app-laptop-bag-filter *ngIf="category.value === 'laptopBag'" (filterEvent)="changeFilter($event)"></app-laptop-bag-filter>
+
+            <button (click)="apply(category.value); sideBar()">Apply</button>
+        </div>
+    </div>
+    <div id="right">
+        <app-search></app-search>
+        <br>
+        <div *ngFor="let items of products">
+            <img [src]=items.dbPath>
+            <div>
+                <h1>{{items.name}}</h1>
+                <p>{{items.price | currency: 'PLN':'symbol-narrow':undefined:'pl'}}</p>
+                <p><a routerLink="details/{{items.id}}">View details</a></p>
+            </div>
+        </div>
+    </div>
+</div>

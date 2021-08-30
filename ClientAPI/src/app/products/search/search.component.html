@@ -1,0 +1,9 @@
+<div id="search-component">
+    <input #searchBox (input)="search(searchBox.value)" placeholder="SEARCH" (change)="show(searchBox.value)"/>
+  
+    <ul id="list">
+      <li *ngFor="let product of products$ | async">
+          {{product.name}}
+      </li>
+    </ul>
+  </div>

@@ -1,0 +1,13 @@
+<nav>
+  <span><div #smallScreenDropMenuTriger (click)="dropMenu($event)">Menu</div></span>
+
+  <ul #dropmenu (click)="dropMenu($event)">
+    <li><a (click)="onSelect($event)" routerLink="main">Main</a></li>
+    <li><a (click)="onSelect($event)" routerLink="products">Products</a></li>
+    <li><a (click)="onSelect($event)" routerLink="contact">Contact</a></li>
+    <li><a id='account' (click)="onSelect($event)" [routerLink]="accountUrl">Login</a></li>
+  </ul>
+</nav>
+<div (click)="dropMenu($event)">
+  <router-outlet></router-outlet>
+</div>

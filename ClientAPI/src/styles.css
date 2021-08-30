@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --dark-green: rgb(46, 109, 31);
+  --light-green: rgb(35, 173, 0);
+  --dark-gray: rgb(26, 26, 26);
+  --light-gray: rgb(39, 39, 39);
+  --dark-red: rgb(136, 0, 0);
+  --light-red: rgb(189, 0, 0);
+
+  --nav-height: 53.2px;
+}
+body {
+  margin: 0;
+  /* background-color: rgb(39, 39, 39); */
+
+}
+
+.alert {
+  position: absolute;
+  background-color: rgb(194, 67, 67);
+  color: rgb(73, 1, 1);
+  font-weight: bold;
+  font-family: monospace; 
+}
+.alert div {
+  border: 1px solid rgb(122, 40, 40);
+}

@@ -1,0 +1,32 @@
+.wrapper {
+    height: Calc(100vh - var(--nav-height));
+    background-color: var(--light-gray);
+    color: var(--light-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+        background-color: var(--dark-gray);
+        border-radius: 25px;
+        padding: 20px;
+        margin-bottom: var(--nav-height);
+
+        > h1 {
+            font-family: fantasy;
+            letter-spacing: .2em;
+            font-size: 3em;
+        }
+
+        table {
+            border-spacing: 10px;
+            font-weight: bold;
+            tr > td {
+                &:first-child {
+                    text-align: right;
+                    vertical-align: top;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+<div class="wrapper">
+    <div>
+        <h1>ADD NEW PRODUCT</h1>
+        <div>
+            <select #product>
+                <div></div>
+                <option value="asd">--Select product--</option>
+                <option value="laptop">Laptop</option>
+                <option value="laptop-bag">Laptop bag</option>
+            </select>
+        </div>
+        <div class="form" *ngIf="product.value === 'laptop'">
+            <app-laptop-form></app-laptop-form>
+        </div>
+        <div class="form" *ngIf="product.value === 'laptop-bag'">
+            <app-laptop-bag-form></app-laptop-bag-form>
+        </div>
+
+        <div>
+            <span *ngIf="message">
+                {{message}}
+            </span>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- <input type="file" #file style="display: none;" (change)="uploadFile(file.files)" accept="image/jpeg">
+<button (click)="file.click()">Upload File</button>
+<div>
+    <span *ngIf="progress > 0">
+        {{progress}}%
+    </span>
+    <span *ngIf="message">
+        {{message}}
+    </span>
+</div> -->

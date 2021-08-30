@@ -1,0 +1,102 @@
+.wrapper {
+  height: Calc(100vh - var(--nav-height));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light-gray);
+
+  form {
+    margin-bottom: 5%;
+    padding: 10px 30px 30px;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 25px;
+    background-color: var(--dark-gray);
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-family: fantasy;
+      letter-spacing: 5px;
+      color: var(--light-green);
+      text-align: center;
+      font-size: 2em;
+    }
+
+    p.register {
+      letter-spacing: normal;
+      text-align: center;
+      margin: 0;
+
+      a {
+        color: var(--dark-green);
+        font-size: 0.5em;
+        cursor: pointer;
+        text-decoration: none;
+
+        &:hover {
+          color: var(--light-green);
+        }
+      }
+    }
+
+    button {
+      color: var(--light-green);
+      border: 1px solid var(--light-green);
+      border-radius: 20px;
+      background-color: transparent;
+      padding: 10px;
+      width: 120px;
+      margin: 10px auto 0;
+
+      &:hover {
+        color: var(--dark-gray);
+        background-color: var(--light-green);
+      }
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input,
+    label {
+      width: 200px;
+      color: var(--dark-green);
+    }
+
+    .form-element {
+      margin: 0 auto;
+      width: fit-content;
+
+      display: flex;
+      flex-direction: column-reverse;
+
+      .ng-invalid.ng-touched {
+        border-bottom: 1px solid var(--dark-red);
+      }
+
+      input {
+        border-style: hidden;
+        border-bottom: 1px solid var(--dark-green);
+        background-color: transparent;
+        margin-top: 10px;
+
+        &.ng-invalid.ng-touched:focus {
+          border-bottom: 1px solid var(--light-red);
+        }
+
+        &:focus {
+          outline: none;
+          border-bottom: 1px solid var(--light-green);
+          color: var(--light-green);
+
+          + label {
+            color: var(--light-green);
+          }
+        }
+      }
+    }
+  }
+}

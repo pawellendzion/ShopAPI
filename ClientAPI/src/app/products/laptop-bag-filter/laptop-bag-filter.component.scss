@@ -1,0 +1,25 @@
+select {
+    width: 168px;
+    -webkit-appearance: none;
+    text-align-last: center;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 2px solid var(--light-green);
+    background-color: var(--dark-gray);
+    color: var(--light-green);
+    outline: none;
+    overflow: hidden;
+    white-space: pre;
+    text-overflow: ellipsis;
+
+    option:checked {
+        background-color: var(--light-green);
+        color: var(--dark-gray);
+    }
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+}

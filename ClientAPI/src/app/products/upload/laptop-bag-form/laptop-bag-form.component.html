@@ -1,0 +1,40 @@
+<form [formGroup]="laptopBagForm" (ngSubmit)="onSubmit(file.files)">
+    <div class="form-element">
+        <div>
+            <div class="alert" *ngIf="name.invalid && (name.dirty || name.touched)">
+                <div>Name is required</div>
+            </div>
+        </div>
+        
+        <input id="name" autocomplete="off" formControlName="name" />
+        <label for="name">Name:</label>
+    </div>
+    <br>
+    <div class="form-element">
+        <div>
+            <div class="alert" *ngIf="price.invalid && (price.dirty || price.touched)">
+                <div>Price is required</div>
+            </div>
+        </div>
+
+        <input type="number" id="price" autocomplete="off" formControlName="price">
+        <label for="price">Price:</label>
+    </div>
+    <br>
+    <div class="form-element">
+        <div>
+            <div class="alert" *ngIf="laptopScreenSize.invalid && (laptopScreenSize.dirty || laptopScreenSize.touched)">
+                <div>Laptop's screen size is required</div>
+            </div>
+        </div>
+
+        <input type="number" id="screen" autocomplete="off" formControlName="laptopScreenSize">
+        <label for="screen">Screen size (in inch):</label>
+    </div>
+
+    <div class="btn-con">
+        <input required type="file" #file style="display: none;" accept="image/jpeg">
+        <button (click)="file.click()">Upload File</button>
+        <button type="submit">Submit</button>
+    </div>
+</form>

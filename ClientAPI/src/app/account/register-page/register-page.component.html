@@ -1,0 +1,112 @@
+<div class="wrapper">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <p>Register</p>
+    <div>
+      <div *ngIf="incorrect" class="alert">
+        User exist!
+      </div>
+    </div>
+    <!--first name-->
+    <div class="form-element">
+      <!--alert box start-->
+      <div>
+        <div
+          class="alert"
+          *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+        >
+          <div *ngIf="firstName.errors?.required">First Name is required!</div>
+        </div>
+      </div>
+      <!--alert box end-->
+      <input id="firstName" autocomplete="off" formControlName="firstName" />
+      <label for="firstName">First name*</label>
+    </div>
+
+    <br />
+
+    <!--last name-->
+    <div class="form-element">
+      <!--alert box start-->
+      <div>
+        <div
+          class="alert"
+          *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+        >
+          <div *ngIf="lastName.errors?.required">Last name is required!</div>
+        </div>
+      </div>
+      <!--alert box end-->
+      <input id="lastName" autocomplete="off" formControlName="lastName" />
+      <label for="lastName">Last name*</label>
+    </div>
+
+    <br />
+
+    <!--email-->
+    <div class="form-element">
+      <!--alert box start-->
+      <div>
+        <div
+          class="alert"
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+        >
+          <div *ngIf="email.errors?.required">Email is required!</div>
+          <div *ngIf="email.errors?.email">Invalid email!</div>
+        </div>
+      </div>
+      <!--alert box end-->
+      <input id="email" autocomplete="off" formControlName="email" />
+      <label for="email">Email*</label>
+    </div>
+
+    <br />
+
+    <!--password-->
+    <div class="form-element">
+      <!--alert box start-->
+      <div>
+        <div
+          class="alert"
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+        >
+          <div *ngIf="password.errors?.required">Password is required!</div>
+          <div *ngIf="password.errors?.minlength">Password must be at least 8 characters long!</div>
+        </div>
+      </div>
+      <!--alert box end-->
+      <input
+        id="passwd"
+        type="password"
+        formControlName="password"
+      />
+      <label for="passwd">Password*</label>
+    </div>
+
+    <br />
+
+    <!--confirm password-->
+    <div class="form-element">
+      <!--alert box start-->
+      <div>
+        <div
+          class="alert"
+          *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
+        >
+          <div *ngIf="confirmPassword.errors?.required">Confirm password is required!</div>
+          <div *ngIf="confirmPassword.errors?.notMatching">Password must be same!</div>
+        </div>
+      </div>
+      <!--alert box end-->
+      <input
+        id="cpasswd"
+        type="password"
+        formControlName="confirmPassword"
+      />
+      <label for="cpasswd">Confirm password*</label>
+    </div>
+
+    <br />
+
+    <button>Register</button>
+  </form>
+</div>

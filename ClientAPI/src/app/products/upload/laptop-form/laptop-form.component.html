@@ -1,0 +1,62 @@
+<form [formGroup]="laptopForm" (ngSubmit)="onSubmit(file.files)">
+    <div class="form-element">
+        <div>
+            <div class="alert" *ngIf="name.invalid && (name.dirty || name.touched)">
+                <div>Name is required</div>
+            </div>
+        </div>
+        
+        <input id="name" autocomplete="off" formControlName="name" />
+        <label for="name">Name:</label>
+    </div>
+    <br>
+    <div class="form-element">
+        <div>
+            <div class="alert" *ngIf="price.invalid && (price.dirty || price.touched)">
+                <div>Price is required</div>
+            </div>
+        </div>
+
+        <input type="number" id="price" autocomplete="off" formControlName="price">
+        <label for="price">Price:</label>
+    </div>
+    <br>
+    <div class="form-element">
+        <div>
+            <div class="alert" *ngIf="cpu.invalid && (cpu.dirty || cpu.touched)">
+                <div>Cpu is required</div>
+            </div>
+        </div>
+
+        <input id="cpu" autocomplete="off" formControlName="cpu">
+        <label for="cpu">Cpu:</label>
+    </div>
+    <br>
+    <div class="form-element">
+        <div>
+            <div class="alert" *ngIf="graphic.invalid && (graphic.dirty || graphic.touched)">
+                <div>Graphic is required</div>
+            </div>
+        </div>
+
+        <input id="graphic" autocomplete="off" formControlName="graphic">
+        <label for="graphic">Graphic:</label>
+    </div>
+    <br>
+    <div class="form-element">
+        <div>
+            <div class="alert" *ngIf="screenSize.invalid && (screenSize.dirty || screenSize.touched)">
+                <div>Screen size is required</div>
+            </div>
+        </div>
+
+        <input type="number" id="screen" autocomplete="off" formControlName="screenSize">
+        <label for="screen">Screen size (in inch):</label>
+    </div>
+
+    <div class="btn-con">
+        <input required type="file" #file style="display: none;" accept="image/jpeg">
+        <button (click)="file.click()">Upload File</button>
+        <button type="submit">Submit</button>
+    </div>
+</form>
