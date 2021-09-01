@@ -120,3 +120,5 @@ P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5
 P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ref\ServerAPI.dll
 P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.pdb
 P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\obj\Debug\net5.0\ServerAPI.genruntimeconfig.cache
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Database\ShopApiDb.mdf
+P:\Personalne\ASP.NET core web api with Angular\ShopAPI\ServerAPI\bin\Debug\net5.0\Database\ShopApiDb_log.ldf
