@@ -1,6 +1,8 @@
-import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
 import { UserService } from './Services/user.service';
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +12,47 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   @ViewChild('dropmenu')
   dropMenuEl!: ElementRef;
-  @ViewChild('smallScreenDropMenuTriger')
+  @ViewChild('smallScreenDropMenuTrigger')
   smalltriger!: ElementRef;
 
   selected?: HTMLElement;
   accountUrl = "";
 
-  constructor(private userService: UserService, private router: Router) { }
+  navHighlightOnLoad$: Observable<NavigationEnd>;
+
+  constructor(private userService: UserService, private router: Router) {
+    this.navHighlightOnLoad$ = this.router.events.pipe(
+      filter(evt => evt instanceof NavigationEnd)
+    ) as Observable<NavigationEnd>;
+  }
 
   ngOnInit() {
+    this.navHighlightOnLoad$.subscribe(() => { this.highlightNav(); });
     this.userService.isAuthorizated();
     this.userService.isAuth.subscribe(is => this.checkAuth(is));
+  }
+
+  highlightNav() {
+    const url = this.router.url;
+
+    this.selected?.classList.remove('selected');
+
+    if (url.includes("main")) {
+      this.selected = document.getElementById("main")!;
+      this.selected.classList.add("selected");
+    }
+    else if (url.includes("products")) {
+      this.selected = document.getElementById("products")!;
+      this.selected.classList.add("selected");
+    }
+    else if (url.includes("contact")) {
+      this.selected = document.getElementById("contact")!;
+      this.selected.classList.add("selected");
+    }
+    else if (url.includes("account")) {
+      this.selected = document.getElementById("account")!;
+      this.selected.classList.add("selected");
+    }
   }
 
   checkAuth(is: boolean) {
@@ -33,12 +65,6 @@ export class AppComponent implements OnInit {
       account!.innerHTML = "Login";
       this.accountUrl = "account/login";
     }
-  }
-
-  onSelect(event: Event) {
-    this.selected?.classList.remove('selected');
-    this.selected = event.target as HTMLElement;
-    this.selected.classList.add('selected');
   }
 
   // For small sreen
