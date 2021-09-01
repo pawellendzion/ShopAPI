@@ -9,7 +9,10 @@
             <div *ngIf="product?.category === 'laptop'">
                 <p>cpu: {{product?.cpu}}</p>
                 <p>graphic: {{product?.graphic}}</p>
-                <p>screenSize: {{product?.screenSize}}</p>
+                <p>screen size: {{product?.screenSize}}</p>
+            </div>
+            <div *ngIf="product?.category === 'laptopBag'">
+                <p>Laptop screen size: {{product?.laptopScreenSize}}</p>
             </div>
         </div>
     </div>
