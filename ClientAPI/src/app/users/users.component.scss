@@ -1,0 +1,40 @@
+.wrapper {
+    height: Calc(100vh - var(--nav-height));
+    background-color: var(--light-gray);
+    color: var(--light-green);
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+            border-top: 1px solid var(--light-green);
+            background-color: var(--dark-gray);
+            font-weight: bold;
+        }
+
+        tr {
+            border-bottom: 1px solid var(--light-green);
+            border-left: 1px solid var(--light-green);
+            border-right: 1px solid var(--light-green);
+
+            td {
+                border-left: 1px solid var(--dark-green);
+                border-right: 1px solid var(--dark-green);
+            }
+        }
+    }
+}
+
+select {
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: var(--light-gray);
+    color: var(--light-green);
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}

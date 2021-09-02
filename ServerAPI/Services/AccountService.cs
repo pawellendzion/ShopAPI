@@ -7,6 +7,7 @@ using ServerAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,8 @@ namespace ServerAPI.Services
         public Task<string> Login(LoginDto dto);
         public Task Register(RegisterDto dto);
         public Task<UserDto> GetDetails(int id);
+        public Task<IEnumerable<UserDto>> GetUsers();
+        public Task ChangeRole(int id, string newRole);
     }
 
     public class AccountService : IAccountService
@@ -96,6 +99,44 @@ namespace ServerAPI.Services
             };
 
             return userDetails;
+        }
+
+        public async Task<IEnumerable<UserDto>> GetUsers()
+        {
+            var users = await _dbContext.Users.Include(u => u.Role).Select(u => u).ToListAsync();
+            List<UserDto> usersDto = new();
+            users.ForEach(u =>
+            {
+                usersDto.Add(new UserDto()
+                {
+                    Id = u.Id,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Email = u.Email,
+                    DateOfCreate = u.DateOfCreate,
+                    RoleName = u.Role.Name
+                });
+            });
+
+            return usersDto;
+        }
+
+        public async Task ChangeRole(int id, string newRole)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            int roleId = 1;
+            switch(newRole)
+            {
+                case "User": roleId = 1; break;
+                case "Manager": roleId = 2; break;
+                case "Admin": roleId = 3; break;
+            }
+
+            user.RoleId = roleId;
+
+            _dbContext.Entry(user).Property(u => u.RoleId).IsModified = true;
+            _dbContext.SaveChanges();
         }
 
         private string GenerateJwtToken(User user)

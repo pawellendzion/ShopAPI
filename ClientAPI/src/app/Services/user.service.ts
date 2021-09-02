@@ -42,11 +42,20 @@ export class UserService {
     return this.http.get<UserModel>(`${this.accountUrl}/details`);
   }
 
-  getRole(): any {
+  getRole(): string {
     if (this.isAuth.value) {
       const token = localStorage.getItem('jwt');
       const role = this.jwtHelper.decodeToken(token!)
       return role.Roles;
     }
+    return '';
+  }
+
+  getUsers() {
+    return this.http.get<UserModel[]>(`${this.accountUrl}/users`);
+  }
+
+  changeRole(id: number, newRole: string) {
+    return this.http.patch(`${this.accountUrl}/users`, {userId: id, userNewRole: newRole});
   }
 }

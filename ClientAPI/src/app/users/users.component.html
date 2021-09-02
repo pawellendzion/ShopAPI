@@ -1,0 +1,28 @@
+<div class="wrapper">
+    <table>
+        <thead>
+            <tr>
+                <td>First name</td>
+                <td>Last name</td>
+                <td>Email</td>
+                <td>Date of create</td>
+                <td>Role (changeable)</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.dateOfCreate}}</td>
+                <td>
+                    <select #Role [value]="user.roleName" (change)="changeRole(user.id, Role.value)">
+                        <option value="User">User</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

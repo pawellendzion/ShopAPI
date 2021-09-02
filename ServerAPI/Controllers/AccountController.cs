@@ -24,15 +24,15 @@ namespace ServerAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult> Login([FromBody]LoginDto dto)
+        public async Task<ActionResult> Login([FromBody] LoginDto dto)
         {
             var jwtToken = await _accountService.Login(dto);
-            
+
             return Ok(new { Token = jwtToken });
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult> Register([FromBody]RegisterDto dto)
+        public async Task<ActionResult> Register([FromBody] RegisterDto dto)
         {
             await _accountService.Register(dto);
 
@@ -52,6 +52,24 @@ namespace ServerAPI.Controllers
             var details = await _accountService.GetDetails(id);
 
             return Ok(details);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("users")]
+        public async Task<ActionResult> GetUsers()
+        {
+            var users = await _accountService.GetUsers();
+
+            return Ok(users);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPatch("users")]
+        public async Task<ActionResult> ChangeRole([FromBody]NewRoleModel newRole)
+        {
+            await _accountService.ChangeRole(newRole.UserId, newRole.UserNewRole);
+
+            return NoContent();
         }
     }
 }

@@ -1,3 +1,5 @@
+import { UsersGuard } from './users/usersGuard';
+import { UsersComponent } from './users/users.component';
 import { DetailsComponent } from './products/details/details.component';
 import { ProductsComponent } from './products/products.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
@@ -24,12 +26,13 @@ const routes: Routes = [
     {path: 'register', component: RegisterPageComponent},
     {path: 'details', component: DetailsPageComponent}
   ]},
+  {path: 'users', component: UsersComponent, pathMatch: 'full', canActivate: [UsersGuard]},
   {path: '**', redirectTo: 'main'}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [accountGuard, UploadGuard]
+  providers: [accountGuard, UploadGuard, UsersGuard]
 })
 export class AppRoutingModule { }
