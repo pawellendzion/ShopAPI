@@ -1,10 +1,10 @@
+import { Router } from '@angular/router';
+import { HttpParams } from '@angular/common/http';
 import { ProductModelInterface } from './../Interfaces/product-model-interface';
 import { FilterService } from './../Services/filter.service';
 import { ActivatedComponentService } from 'src/app/Services/activated-component.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../Services/products.service';
-import { LaptopFilterModel } from '../Models/FilterModels/laptop-filter.model';
-import { LaptopBagFilterModel } from '../Models/FilterModels/laptop-bag-filter.model';
 
 @Component({
   selector: 'app-products',
@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
   private currentFilter: any = null;
 
   addToList = (data: ProductModelInterface[]) => {
+    this.products = new Array<ProductModelInterface>();
     data.forEach(element => {
       element.dbPath = this.url + element.dbPath;
       this.products.push(element)
@@ -27,17 +28,13 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private activated: ActivatedComponentService,
-    private filterService: FilterService) { }
+    private filterService: FilterService,
+    private router: Router) { }
 
   ngOnInit() {
     this.activated.setComponent(this);
-
-    this.productsService.getAll().subscribe(p => {
-      p.forEach(element => {
-        element.dbPath = this.url + element.dbPath;
-        this.products.push(element)
-      });
-    });
+    
+    this.filterService.get().subscribe(p => this.addToList(p));
 
     // For small screen
     if(window.innerWidth < 700) document.getElementById('left')!.style.left = '-227px';
@@ -48,8 +45,6 @@ export class ProductsComponent implements OnInit {
   }
 
   show(term: string) {
-    this.products = new Array<ProductModelInterface>();
-
     if (term !== "") {
       this.filterService.searchProducts(term).subscribe(p => this.addToList(p));
     }
@@ -59,7 +54,6 @@ export class ProductsComponent implements OnInit {
   }
 
   apply(category: string) {
-    this.products = new Array<ProductModelInterface>();
 
     let from: number = parseFloat((<HTMLInputElement>document.getElementById('from'))?.value);
     let to: number = parseFloat((<HTMLInputElement>document.getElementById('to'))?.value);
@@ -72,20 +66,30 @@ export class ProductsComponent implements OnInit {
       this.currentFilter.priceTo = to;
     }
 
+    let params!: HttpParams;
     switch (category) {
       case 'laptop':
-        this.filterService.filterLaptop(this.currentFilter).subscribe(p => this.addToList(p));
+        params = this.filterService.laptopQueryParams(this.currentFilter);
         break;
       
       case 'laptopBag':
-        this.filterService.filterLaptopBag(this.currentFilter).subscribe(p => this.addToList(p));
+        params = this.filterService.laptopBagQueryParams(this.currentFilter);
         break;
 
       case '':
-        this.filterService.filterDefault({ priceFrom: from, priceTo: to }).subscribe(p => this.addToList(p));
+        params = this.filterService.defaultQueryParams({priceFrom: from, priceTo: to});
         break;
     }
+
+    this.router.navigateByUrl("products?" + params.toString()).then(() => 
+          this.filterService.get().subscribe(p => this.addToList(p)));
   }
+
+  public clear = (select: HTMLSelectElement) => {
+    select.value = '';
+    this.router.navigateByUrl("products").then(() => this.filterService.get().subscribe(p => this.addToList(p)));
+  }
+
   // For small screen
   public sideBar = () => {
     if (window.innerWidth > 700) return;

@@ -17,6 +17,8 @@
             <app-laptop-bag-filter *ngIf="category.value === 'laptopBag'" (filterEvent)="changeFilter($event)"></app-laptop-bag-filter>
 
             <button (click)="apply(category.value); sideBar()">Apply</button>
+            <br>
+            <button (click)="clear(category); sideBar();">Clear</button>
         </div>
     </div>
     <div id="right">
