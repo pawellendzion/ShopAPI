@@ -1,3 +1,4 @@
+import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 import { ProductModelInterface } from './../Interfaces/product-model-interface';
@@ -12,48 +13,55 @@ import { ProductsService } from '../Services/products.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+  //#region properties
   public products = new Array<ProductModelInterface>();
-  public url = "https://localhost:5001/";
+  
+  private _url = "https://localhost:5001/";
+  private _currentFilter: any = null;
+  //#endregion
 
-  private currentFilter: any = null;
-
-  addToList = (data: ProductModelInterface[]) => {
-    this.products = new Array<ProductModelInterface>();
-    data.forEach(element => {
-      element.dbPath = this.url + element.dbPath;
-      this.products.push(element)
-    });
-  }
-
+  //#region constructor
   constructor(
-    private productsService: ProductsService,
-    private activated: ActivatedComponentService,
-    private filterService: FilterService,
-    private router: Router) { }
+    private _productsService: ProductsService,
+    private _activated: ActivatedComponentService,
+    private _filterService: FilterService,
+    private _router: Router) { }
+  //#endregion
 
+  //#region implemented methods
   ngOnInit() {
-    this.activated.setComponent(this);
+    this._activated.Component = this;
     
-    this.filterService.get().subscribe(p => this.addToList(p));
+    this._filterService.GetFilteredProducts().pipe(take(1)).subscribe(p => this.AddToList(p));
 
     // For small screen
     if(window.innerWidth < 700) document.getElementById('left')!.style.left = '-227px';
   }
+  //#endregion
 
-  public changeFilter = (filter: any) => {
-    this.currentFilter = filter;
+  //#region methods
+  private AddToList(data: ProductModelInterface[]) {
+    this.products = new Array<ProductModelInterface>();
+    data.forEach(element => {
+      element.dbPath = this._url + element.dbPath;
+      this.products.push(element)
+    });
   }
 
-  show(term: string) {
+  public ChangeFilter(filter: any) {
+    this._currentFilter = filter;
+  }
+
+  public ShowProducts(term: string) {
     if (term !== "") {
-      this.filterService.searchProducts(term).subscribe(p => this.addToList(p));
+      this._filterService.SearchProducts(term).pipe(take(1)).subscribe(p => this.AddToList(p));
     }
     else {
-      this.productsService.getAll().subscribe(p => this.addToList(p));
+      this._productsService.GetAllProducts().pipe(take(1)).subscribe(p => this.AddToList(p));
     }
   }
 
-  apply(category: string) {
+  public ApplyFilter(category: string) {
 
     let from: number = parseFloat((<HTMLInputElement>document.getElementById('from'))?.value);
     let to: number = parseFloat((<HTMLInputElement>document.getElementById('to'))?.value);
@@ -61,41 +69,43 @@ export class ProductsComponent implements OnInit {
     if (!from) from = 0;
     if (!to) to = 0;
 
-    if (this.currentFilter) {
-      this.currentFilter.priceFrom = from;
-      this.currentFilter.priceTo = to;
+    if (this._currentFilter) {
+      this._currentFilter.priceFrom = from;
+      this._currentFilter.priceTo = to;
     }
 
     let params!: HttpParams;
     switch (category) {
       case 'laptop':
-        params = this.filterService.laptopQueryParams(this.currentFilter);
+        params = this._filterService.LaptopQueryParams(this._currentFilter);
         break;
       
       case 'laptopBag':
-        params = this.filterService.laptopBagQueryParams(this.currentFilter);
+        params = this._filterService.LaptopBagQueryParams(this._currentFilter);
         break;
 
       case '':
-        params = this.filterService.defaultQueryParams({priceFrom: from, priceTo: to});
+        params = this._filterService.DefaultQueryParams({priceFrom: from, priceTo: to});
         break;
     }
 
-    this.router.navigateByUrl("products?" + params.toString()).then(() => 
-          this.filterService.get().subscribe(p => this.addToList(p)));
+    this._router.navigateByUrl("products?" + params.toString()).then(() => 
+          this._filterService.GetFilteredProducts().pipe(take(1)).subscribe(p => this.AddToList(p)));
   }
 
-  public clear = (select: HTMLSelectElement) => {
+  public ClearFilter(select: HTMLSelectElement) {
     select.value = '';
-    this.router.navigateByUrl("products").then(() => this.filterService.get().subscribe(p => this.addToList(p)));
+    this._router.navigateByUrl("products").then(() => this._filterService.GetFilteredProducts().pipe(take(1)).subscribe(p => this.AddToList(p)));
   }
 
-  // For small screen
-  public sideBar = () => {
+  //#region For small screen
+  public SideBar() {
     if (window.innerWidth > 700) return;
 
     const bar = document.getElementById('left')!;
     if (parseInt(bar.style.left) < 0) bar.style.left = "0px";
     else bar.style.left = "-227px";
   }
+  //#endregion
+  //#endregion
 }

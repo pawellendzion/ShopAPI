@@ -12,25 +12,22 @@ import { LaptopBagFilterModel } from '../Models/FilterModels/laptop-bag-filter.m
   providedIn: 'root'
 })
 export class FilterService {
-  productsUrl = "https://localhost:5001/products/filter";
+  //#region properties
+  private _productsUrl = "https://localhost:5001/products/filter";
+  //#endregion
 
-  constructor(private http: HttpClient, 
-    private route: ActivatedRoute, 
-    private router: Router,
-    private productsService: ProductsService) { }
+  //#region constructor
+  constructor(
+    private _http: HttpClient, 
+    private _route: ActivatedRoute, 
+    private _router: Router,
+    private _productsService: ProductsService) { }
+  //#endregion
 
-  public searchProducts = (term: string) => {
-    if (!term.trim()) {
-      return of([]);
-    }
-    return this.http.get<ProductModelInterface[]>(`${this.productsUrl}/search-products-by-name?name=${term}`);
-  }
+  //#region methods
 
-  public searchStats = (stats: string) => {
-    return this.http.get<string[]>(`${this.productsUrl}/search?prop=${stats}`);
-  }
-
-  public defaultQueryParams = (filter: FilterModelInterface) => {
+  //#region get query params
+  public DefaultQueryParams(filter: FilterModelInterface) {
     const params = new HttpParams()
       .set('priceFrom', filter.priceFrom)
       .set('priceTo', filter.priceTo)
@@ -39,7 +36,7 @@ export class FilterService {
     return params;
   }
 
-  public laptopQueryParams = (filter: LaptopFilterModel) => {
+  public LaptopQueryParams(filter: LaptopFilterModel) {
     const params = new HttpParams()
       .set('priceFrom', filter.priceFrom)
       .set('priceTo', filter.priceTo)
@@ -51,7 +48,7 @@ export class FilterService {
     return params;
   }
 
-  public laptopBagQueryParams = (filter: LaptopBagFilterModel) => {
+  public LaptopBagQueryParams(filter: LaptopBagFilterModel) {
     const params = new HttpParams()
       .set('priceFrom', filter.priceFrom)
       .set('priceTo', filter.priceTo)
@@ -60,19 +57,36 @@ export class FilterService {
 
     return params;
   }
+  //#endregion
 
-  public get = () => {
-    if (this.route.snapshot.queryParamMap.keys.length === 0) {
-      return this.productsService.getAll();
+  public SearchProducts(term: string) {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this._http.get<ProductModelInterface[]>(`${this._productsUrl}/search-products-by-name?name=${term}`);
+  }
+
+  public SearchStats(stats: string) {
+    return this._http.get<string[]>(`${this._productsUrl}/search?prop=${stats}`);
+  }
+  
+  /**
+   * @returns If filter not applied returns all products 
+   * otherwise filtered
+   */
+  public GetFilteredProducts() {
+    if (this._route.snapshot.queryParamMap.keys.length === 0) {
+      return this._productsService.GetAllProducts();
     }
 
-    const params = this.router.url.slice(this.router.url.indexOf('?'));
-    let category = this.route.snapshot.queryParamMap.get("category");
+    const params = this._router.url.slice(this._router.url.indexOf('?'));
+    let category = this._route.snapshot.queryParamMap.get("category");
 
     if (category !== '') {
       category = '/' + category;
     }
 
-    return this.http.get<ProductModelInterface[]>(`${this.productsUrl}${category}${params}`);
+    return this._http.get<ProductModelInterface[]>(`${this._productsUrl}${category}${params}`);
   }
+  //#endregion
 }

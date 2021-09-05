@@ -9,31 +9,39 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./laptop-filter.component.scss']
 })
 export class LaptopFilterComponent implements OnInit {
-  cpu$!: Observable<string[]>;
-  graphic$!: Observable<string[]>;
-  screenSize$!: Observable<string[]>;
+  //#region properties
+  public cpu$!: Observable<string[]>;
+  public graphic$!: Observable<string[]>;
+  public screenSize$!: Observable<string[]>;
 
   @Output() filterEvent = new EventEmitter<LaptopFilterModel>();
 
-  filter = new LaptopFilterModel();
+  private _filter = new LaptopFilterModel();
+  //#endregion
 
-  modifyFilter = (property: string, value: string) => {
-    switch(property) {
-      case 'cpu': this.filter.cpu = value; break;
-      case 'graphic': this.filter.graphic = value; break;
-      case 'screenSize': this.filter.screenSize = value; break;
-    }
-    this.filterEvent.emit(this.filter);
-  }
+  //#region constructor
+  constructor(
+    private _filterService: FilterService) { }
+  //#endregion
 
-  constructor(private filterService: FilterService) { }
-
+  //#region implemented methods
   ngOnInit(): void {
-    this.cpu$ = this.filterService.searchStats('cpu');
-    this.graphic$ = this.filterService.searchStats('graphic');
-    this.screenSize$ = this.filterService.searchStats('screenSize');
-
-    this.filterEvent.emit(this.filter);
+    this.cpu$ = this._filterService.SearchStats('cpu');
+    this.graphic$ = this._filterService.SearchStats('graphic');
+    this.screenSize$ = this._filterService.SearchStats('screenSize');
+    
+    this.filterEvent.emit(this._filter);
   }
-
+  //#endregion
+  
+  //#region methods
+  public ModifyFilter = (property: string, value: string) => {
+    switch(property) {
+      case 'cpu': this._filter.cpu = value; break;
+      case 'graphic': this._filter.graphic = value; break;
+      case 'screenSize': this._filter.screenSize = value; break;
+    }
+    this.filterEvent.emit(this._filter);
+  }
+  //#endregion
 }

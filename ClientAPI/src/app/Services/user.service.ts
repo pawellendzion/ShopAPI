@@ -2,60 +2,71 @@ import { RegisterModel } from './../Models/Register.model';
 import { LoginModel } from './../Models/Login.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { UserModel } from '../Models/User.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
-  accountUrl = "https://localhost:5001/account";
-  header = new HttpHeaders().set('Content-Type', 'application/json');
-  isAuth = new BehaviorSubject<boolean>(false);
+  //#region properties
+  private _accountUrl = "https://localhost:5001/account";
+  private _header = new HttpHeaders().set('Content-Type', 'application/json');
+  
+  public isAuth = new BehaviorSubject<boolean>(false);
+  //#endregion
 
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
-
+  //#region constructor
+  constructor(
+    private _http: HttpClient, 
+    private _jwtHelper: JwtHelperService) { }
+  //#endregion
+  
+  //#region methods
   /**
    * result is in isAuth
    */
-  isAuthorizated() {
+  public Authenticate() {
     const token = localStorage.getItem('jwt');
-    if (token && !this.jwtHelper.isTokenExpired(token))
+    if (token && !this._jwtHelper.isTokenExpired(token))
       this.isAuth.next(true)
     else
       this.isAuth.next(false);
   }
 
-  login(userLogin: LoginModel): Observable<unknown> {
-    return this.http.post(`${this.accountUrl}/login`, userLogin, { headers: this.header });
+  public Login(userLogin: LoginModel) {
+    return this._http.post(`${this._accountUrl}/login`, userLogin, { headers: this._header });
+  }
+  
+  public Register(userRegister: RegisterModel) {
+    return this._http.post<UserModel>(`${this._accountUrl}/register`, userRegister, { headers: this._header });
   }
 
-  logout() {
+  public Logout() {
     localStorage.removeItem('jwt');
     this.isAuth.next(false);
   }
 
-  register(userRegister: RegisterModel) {
-    return this.http.post<UserModel>(`${this.accountUrl}/register`, userRegister, { headers: this.header });
+  public GetDetails() {
+    return this._http.get<UserModel>(`${this._accountUrl}/details`);
   }
 
-  getDetails(): Observable<UserModel> {
-    return this.http.get<UserModel>(`${this.accountUrl}/details`);
-  }
-
-  getRole(): string {
+  public GetRole() {
     if (this.isAuth.value) {
       const token = localStorage.getItem('jwt');
-      const role = this.jwtHelper.decodeToken(token!)
+      const role = this._jwtHelper.decodeToken(token!)
       return role.Roles;
     }
     return '';
   }
 
-  getUsers() {
-    return this.http.get<UserModel[]>(`${this.accountUrl}/users`);
+  public GetUsers() {
+    return this._http.get<UserModel[]>(`${this._accountUrl}/users`);
   }
 
-  changeRole(id: number, newRole: string) {
-    return this.http.patch(`${this.accountUrl}/users`, {userId: id, userNewRole: newRole});
+  public ChangeRole(id: number, newRole: string) {
+    return this._http.patch(`${this._accountUrl}/users`, {userId: id, userNewRole: newRole});
   }
+  //#endregion
 }

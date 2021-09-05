@@ -10,13 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class UsersComponent implements OnInit {
   users?: Array<UserModel>;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private _userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(u => this.users = u);
+    this._userService.GetUsers().subscribe(u => this.users = u);
   }
 
-  public changeRole = (id: number, newRole: string) => {    
-    this.userService.changeRole(id, newRole).subscribe();
+  public ChangeRole(id: number, newRole: string) {    
+    this._userService.ChangeRole(id, newRole).subscribe();
   }
 }

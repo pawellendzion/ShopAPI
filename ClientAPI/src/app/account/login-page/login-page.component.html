@@ -1,21 +1,22 @@
 <div class="wrapper">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm" (ngSubmit)="OnSubmit()">
     <p>LOGIN</p>
     <div *ngIf="incorrect">
       <div class="alert">
           Email or password is incorrect.
       </div>
     </div>
+    <br>
     <!--email-->
     <div class="form-element">
       <!--alert box start-->
       <div>
         <div
           class="alert"
-          *ngIf="email.invalid && (email.dirty || email.touched)"
+          *ngIf="Email.invalid && (Email.dirty || Email.touched)"
         >
-          <div *ngIf="email.errors?.required">Email is required!</div>
-          <div *ngIf="email.errors?.email">Invalid email!</div>
+          <div *ngIf="Email.errors?.required">Email is required!</div>
+          <div *ngIf="Email.errors?.email">Invalid email!</div>
         </div>
       </div>
       <!--alert box end-->
@@ -35,9 +36,9 @@
       <div>
         <div
           class="alert"
-          *ngIf="password.invalid && (password.dirty || password.touched)"
+          *ngIf="Password.invalid && (Password.dirty || Password.touched)"
         >
-          <div *ngIf="password.errors?.required">Password is required!</div>
+          <div *ngIf="Password.errors?.required">Password is required!</div>
         </div>
       </div>
       <!--alert box end-->

@@ -1,9 +1,11 @@
+import { CommonUrls } from './../../commonUrls';
 import { ActivatedComponentService } from '../../Services/activated-component.service';
 import { UserService } from '../../Services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { checkPasswordsValidator } from '../../Validators/check-passwords.validator';
+import { CheckPasswordsValidator } from '../../Validators/check-passwords.validator';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register-page',
@@ -11,50 +13,60 @@ import { Router } from '@angular/router';
   styleUrls: ['./register-page.component.scss'],
 })
 export class RegisterPageComponent implements OnInit {
-  registerForm!: FormGroup;
+  //#region properties
+  public registerForm!: FormGroup;
   public incorrect = false;
+  //#endregion
 
+  //#region constructor
   constructor(
-    private formBuilder: FormBuilder,
-    private userService: UserService,
-    public activatedComponent: ActivatedComponentService,
-    private router: Router) { }
+    private _formBuilder: FormBuilder,
+    private _userService: UserService,
+    private _activatedComponent: ActivatedComponentService,
+    private _router: Router) { }
+  //#endregion
 
+  //#region implemented methods
   ngOnInit() {
-    this.activatedComponent.setComponent(this)
+    this._activatedComponent.Component = this;
     
-    this.registerForm = this.formBuilder.group({
+    this.registerForm = this._formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: [
         '',
-        [Validators.required, Validators.minLength(8), checkPasswordsValidator],
+        [Validators.required, Validators.minLength(8), CheckPasswordsValidator],
       ],
-      confirmPassword: ['', [Validators.required, checkPasswordsValidator]],
+      confirmPassword: ['', [Validators.required, CheckPasswordsValidator]],
     });
   }
+  //#endregion
 
-  onSubmit() {
+  //#region methods
+  public OnSubmit() {
     if (this.registerForm.invalid) return;
 
-    this.userService.register(this.registerForm.getRawValue()).subscribe()
-    this.router.navigateByUrl("account/login");
+    this._userService.Register(this.registerForm.getRawValue()).pipe(take(1)).subscribe(() =>
+      this._router.navigateByUrl(CommonUrls.AccountLoginPageUrl));
   }
+  //#endregion
 
-  get firstName() {
+  //#region getters
+  public get FirstName() {
     return this.registerForm.get('firstName')!;
   }
-  get lastName() {
+  public get LastName() {
     return this.registerForm.get('lastName')!;
   }
-  get email() {
+  public get Email() {
     return this.registerForm.get('email')!;
   }
-  get password() {
+  public get Password() {
     return this.registerForm.get('password')!;
   }
-  get confirmPassword() {
+  public get ConfirmPassword() {
     return this.registerForm.get('confirmPassword')!;
   }
+  //#endregion
 }

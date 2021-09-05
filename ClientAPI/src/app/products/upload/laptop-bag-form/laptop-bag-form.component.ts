@@ -10,41 +10,48 @@ import { UploadComponent } from '../upload.component';
   styleUrls: ['./laptop-bag-form.component.scss']
 })
 export class LaptopBagFormComponent implements OnInit {
-  laptopBagForm!: FormGroup;
+  //#region properties
+  public laptopBagForm!: FormGroup;
+  //#endregion
 
-  constructor(private formBuilder: FormBuilder, private service: ActivatedComponentService) { }
+  //#region constructor
+  constructor(
+    private _formBuilder: FormBuilder, 
+    private _service: ActivatedComponentService) { }
+  //#endregion
 
+  //#region implemented methods
   ngOnInit(): void {
-    this.laptopBagForm = this.formBuilder.group({
+    this.laptopBagForm = this._formBuilder.group({
       name: ['', Validators.required],
       price: [null, Validators.required],
       laptopScreenSize: [null, Validators.required]
     })
   }
+  //#endregion
 
-  onSubmit(file: any) {
+  //#region  methods
+  public OnSubmit(file: any) {
     if (this.laptopBagForm.invalid || !file || file.length === 0) return;
 
     const stats = new LaptopBagModel(
-      this.name.value,
-      this.price.value,
-      this.laptopScreenSize.value);
+      this.Name.value,
+      this.Price.value,
+      this.LaptopScreenSize.value);
 
-    (this.service.getComponent as UploadComponent).uploadFile(file, stats);
+    (this._service.Component as UploadComponent).UploadFile(file, stats);
   }
+  //#endregion
 
-
-
-  get name() {
+  //#region getters
+  public get Name() {
     return this.laptopBagForm.get('name')!;
   }
-
-  get price() {
+  public get Price() {
     return this.laptopBagForm.get('price')!;
   }
-
-  get laptopScreenSize() {
+  public get LaptopScreenSize() {
     return this.laptopBagForm.get('laptopScreenSize')!;
   }
-
+  //#endregion
 }

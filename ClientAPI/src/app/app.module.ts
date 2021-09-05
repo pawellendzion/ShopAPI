@@ -63,7 +63,6 @@ export function tokenGetter() {
     })
   ],
   providers: [
-    UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,

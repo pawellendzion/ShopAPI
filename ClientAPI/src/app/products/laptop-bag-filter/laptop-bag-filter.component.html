@@ -1,5 +1,5 @@
 <div>
-    <select #laptopScreenSize (change)="modifyFilter('laptopScreenSize', laptopScreenSize.value)">
+    <select #laptopScreenSize (change)="ModifyFilter('laptopScreenSize', laptopScreenSize.value)">
         <option value="">-laptop screen size-</option>
         <option *ngFor="let item of laptopScreenSize$ | async" value="{{item}}">{{item}}</option>
     </select>

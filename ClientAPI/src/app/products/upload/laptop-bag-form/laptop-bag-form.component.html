@@ -1,7 +1,7 @@
-<form [formGroup]="laptopBagForm" (ngSubmit)="onSubmit(file.files)">
+<form [formGroup]="laptopBagForm" (ngSubmit)="OnSubmit(file.files)">
     <div class="form-element">
         <div>
-            <div class="alert" *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div class="alert" *ngIf="Name.invalid && (Name.dirty || Name.touched)">
                 <div>Name is required</div>
             </div>
         </div>
@@ -12,7 +12,7 @@
     <br>
     <div class="form-element">
         <div>
-            <div class="alert" *ngIf="price.invalid && (price.dirty || price.touched)">
+            <div class="alert" *ngIf="Price.invalid && (Price.dirty || Price.touched)">
                 <div>Price is required</div>
             </div>
         </div>
@@ -23,7 +23,7 @@
     <br>
     <div class="form-element">
         <div>
-            <div class="alert" *ngIf="laptopScreenSize.invalid && (laptopScreenSize.dirty || laptopScreenSize.touched)">
+            <div class="alert" *ngIf="LaptopScreenSize.invalid && (LaptopScreenSize.dirty || LaptopScreenSize.touched)">
                 <div>Laptop's screen size is required</div>
             </div>
         </div>

@@ -1,15 +1,15 @@
 <div>
-    <select #cpu (change)="modifyFilter('cpu', cpu.value)">
+    <select #cpu (change)="ModifyFilter('cpu', cpu.value)">
         <option class="option" value="">-cpu-</option>
         <option *ngFor="let item of cpu$ | async" value="{{item}}">{{item}}</option>
     </select>
 
-    <select #graphic (change)="modifyFilter('graphic', graphic.value)">
+    <select #graphic (change)="ModifyFilter('graphic', graphic.value)">
         <option value="">-graphic-</option>
         <option *ngFor="let item of graphic$ | async" value="{{item}}">{{item}}</option>
     </select>
 
-    <select #screenSize (change)="modifyFilter('screenSize', screenSize.value)">
+    <select #screenSize (change)="ModifyFilter('screenSize', screenSize.value)">
         <option value="">-screen size-</option>
         <option *ngFor="let item of screenSize$ | async" value="{{item}}">{{item}}</option>
     </select>

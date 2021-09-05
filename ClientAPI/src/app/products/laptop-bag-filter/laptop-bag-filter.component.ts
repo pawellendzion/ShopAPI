@@ -9,25 +9,33 @@ import { LaptopBagFilterModel } from 'src/app/Models/FilterModels/laptop-bag-fil
   styleUrls: ['./laptop-bag-filter.component.scss']
 })
 export class LaptopBagFilterComponent implements OnInit {
-  laptopScreenSize$!: Observable<string[]>;
-
+  //#region properties
+  public laptopScreenSize$!: Observable<string[]>;
+  
   @Output() filterEvent = new EventEmitter<LaptopBagFilterModel>();
+  
+  private _filter = new LaptopBagFilterModel();
+  //#endregion
+  
+  //#region constructor
+  constructor(
+    private _filterService: FilterService) { }
+  //#endregion
 
-  filter = new LaptopBagFilterModel();
-
-  modifyFilter = (property: string, value: string) => {
-    switch(property) {
-      case 'laptopScreenSize': this.filter.laptopScreenSize = value; break;
-    }
-    this.filterEvent.emit(this.filter);
-  }
-
-  constructor(private filterService: FilterService) { }
-
+  //#region implemented methods
   ngOnInit(): void {
-    this.laptopScreenSize$ = this.filterService.searchStats('laptopScreenSize');
+    this.laptopScreenSize$ = this._filterService.SearchStats('laptopScreenSize');
     
-    this.filterEvent.emit(this.filter);
+    this.filterEvent.emit(this._filter);
   }
+  //#endregion
 
+  //#region methods
+  public ModifyFilter(property: string, value: string) {
+    switch(property) {
+      case 'laptopScreenSize': this._filter.laptopScreenSize = value; break;
+    }
+    this.filterEvent.emit(this._filter);
+  }
+  //#endregion
 }

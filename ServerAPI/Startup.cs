@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using ServerAPI.Entities;
 using ServerAPI.Middleware;
 using ServerAPI.Services;
@@ -31,6 +30,7 @@ namespace ServerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Authentication
             AuthenticationSettings authenticationSettings = new();
             Configuration.GetSection("Authentication").Bind(authenticationSettings);
             services.AddSingleton(authenticationSettings);
@@ -53,7 +53,9 @@ namespace ServerAPI
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey))
                 };
             });
+            #endregion
 
+            #region Cors
             services.AddCors(option =>
                 option.AddDefaultPolicy(config =>
                     config.WithOrigins("http://localhost:4200")
@@ -61,10 +63,12 @@ namespace ServerAPI
                         .AllowAnyMethod()
                 )
             );
+            #endregion
 
             services.AddControllers();
 
             services.AddScoped<Seeder>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
@@ -75,13 +79,12 @@ namespace ServerAPI
                 option.MemoryBufferThreshold = int.MaxValue;
             });
 
-
+            #region Database config
             var currentDir = Directory.GetCurrentDirectory();
             ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + currentDir + "\\Database\\ShopApiDb.mdf;Integrated Security=True";
             services.AddDbContext<ShopDbContext>(options =>
                 options.UseSqlServer(ConnectionString));
-
-            services.AddScoped<IAccountService, AccountService>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

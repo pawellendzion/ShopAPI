@@ -16,11 +16,11 @@ namespace ServerAPI.Services
 {
     public interface IAccountService
     {
-        public Task<string> Login(LoginDto dto);
-        public Task Register(RegisterDto dto);
-        public Task<UserDto> GetDetails(int id);
-        public Task<IEnumerable<UserDto>> GetUsers();
-        public Task ChangeRole(int id, string newRole);
+        public Task<string> LoginAsync(LoginDto dto);
+        public Task RegisterAsync(RegisterDto dto);
+        public Task<UserDto> GetDetailsAsync(int id);
+        public Task<IEnumerable<UserDto>> GetUsersAsync();
+        public Task ChangeRoleAsync(int id, string newRole);
     }
 
     public class AccountService : IAccountService
@@ -44,7 +44,7 @@ namespace ServerAPI.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <returns>JWT token</returns>
-        public async Task<string> Login(LoginDto dto)
+        public async Task<string> LoginAsync(LoginDto dto)
         {
             var user = await _dbContext.Users
                 .Include(u => u.Role)
@@ -58,7 +58,7 @@ namespace ServerAPI.Services
             return GenerateJwtToken(user);
         }
 
-        public async Task Register(RegisterDto dto)
+        public async Task RegisterAsync(RegisterDto dto)
         {
             var existUser = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
             if (existUser is User)
@@ -82,7 +82,7 @@ namespace ServerAPI.Services
             await _dbContext.SaveChangesAsync();
         }
         
-        public async Task<UserDto> GetDetails(int id)
+        public async Task<UserDto> GetDetailsAsync(int id)
         {
             var user = await _dbContext.Users.Include(u => u.Role).FirstOrDefaultAsync(u => u.Id == id);
 
@@ -101,7 +101,7 @@ namespace ServerAPI.Services
             return userDetails;
         }
 
-        public async Task<IEnumerable<UserDto>> GetUsers()
+        public async Task<IEnumerable<UserDto>> GetUsersAsync()
         {
             var users = await _dbContext.Users.Include(u => u.Role).Select(u => u).ToListAsync();
             List<UserDto> usersDto = new();
@@ -121,7 +121,7 @@ namespace ServerAPI.Services
             return usersDto;
         }
 
-        public async Task ChangeRole(int id, string newRole)
+        public async Task ChangeRoleAsync(int id, string newRole)
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
 
@@ -136,7 +136,7 @@ namespace ServerAPI.Services
             user.RoleId = roleId;
 
             _dbContext.Entry(user).Property(u => u.RoleId).IsModified = true;
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
         private string GenerateJwtToken(User user)

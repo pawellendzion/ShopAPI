@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <div class="filter" (click)="sideBar()">Filter</div>
+    <div class="filter" (click)="SideBar()">Filter</div>
     <div id="left">
         <h1>FILTER</h1>
         <div>
@@ -7,18 +7,18 @@
 
             <div><input id="from" type="number" value="0"> - <input id="to" type="number" value="100000"></div>
 
-            <select #category (change)="changeFilter(null)">
+            <select #category (change)="ChangeFilter(null)">
                 <option value="">-choose type of product-</option>
                 <option value="laptop">laptop</option>
                 <option value="laptopBag">laptop bag</option>
             </select>
             
-            <app-laptop-filter *ngIf="category.value === 'laptop'" (filterEvent)="changeFilter($event)"></app-laptop-filter>
-            <app-laptop-bag-filter *ngIf="category.value === 'laptopBag'" (filterEvent)="changeFilter($event)"></app-laptop-bag-filter>
+            <app-laptop-filter *ngIf="category.value === 'laptop'" (filterEvent)="ChangeFilter($event)"></app-laptop-filter>
+            <app-laptop-bag-filter *ngIf="category.value === 'laptopBag'" (filterEvent)="ChangeFilter($event)"></app-laptop-bag-filter>
 
-            <button (click)="apply(category.value); sideBar()">Apply</button>
+            <button (click)="ApplyFilter(category.value); SideBar()">Apply</button>
             <br>
-            <button (click)="clear(category); sideBar();">Clear</button>
+            <button (click)="ClearFilter(category); SideBar();">Clear</button>
         </div>
     </div>
     <div id="right">

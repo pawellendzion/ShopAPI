@@ -6,11 +6,11 @@ import { Injectable } from '@angular/core';
 export class ActivatedComponentService {
   private _component: any;
 
-  public setComponent(component: any): void {
+  public set Component(component: any) {
     this._component = component;
   }
 
-  get getComponent() {
+  public get Component() {
     return this._component;
   }
 }

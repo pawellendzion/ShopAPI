@@ -1,3 +1,4 @@
+import { take } from 'rxjs/operators';
 import { UserService } from '../../Services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -10,41 +11,49 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
-  loginForm!: FormGroup;
+  //#region properties
+  public loginForm!: FormGroup;
   public incorrect = false;
+  //#endregion
 
+  //#region constructor
   constructor(
-    private formBuilder: FormBuilder,
-    private userService: UserService,
-    private activedComponent: ActivatedComponentService,
-    private router: Router) { }
+    private _formBuilder: FormBuilder,
+    private _userService: UserService,
+    private _activedComponent: ActivatedComponentService,
+    private _router: Router) { }
+  //#endregion
 
+  //#region implemented methods
   ngOnInit() {
-    this.activedComponent.setComponent(this);
+    this._activedComponent.Component = this;
 
-    this.loginForm = this.formBuilder.group({
+    this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
+  //#endregion
 
-  onSubmit() {
+  //#region methods
+  public OnSubmit(): void {
     if (this.loginForm.invalid) return;
 
-    this.userService.login(this.loginForm.getRawValue()).subscribe(res => {
+    this._userService.Login(this.loginForm.getRawValue()).pipe(take(1)).subscribe(res => {
       const token = (<any>res).token;
       localStorage.setItem("jwt", token);
-      this.userService.isAuth.next(true)
-      this.router.navigateByUrl("main");
+      this._userService.isAuth.next(true)
+      this._router.navigateByUrl("main");
     });
   }
+  //#endregion
 
-  // Getters
-  get email() {
+  //#region getters
+  public get Email() {
     return this.loginForm.get('email')!;
   }
-
-  get password() {
+  public get Password() {
     return this.loginForm.get('password')!;
   }
+  //#endregion
 }

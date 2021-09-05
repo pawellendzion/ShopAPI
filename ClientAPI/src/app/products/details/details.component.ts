@@ -1,6 +1,7 @@
 import { ProductsService } from './../../Services/products.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-details',
@@ -8,21 +9,31 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
+  //#region properites
   public product: any;
-  public url = "https://localhost:5001/";
+  
+  private _url = "https://localhost:5001/";
+  //#endregion
 
-  constructor(private productsService: ProductsService, private route: ActivatedRoute) { }
+  //#region constructor
+  constructor(
+    private _productsService: ProductsService, 
+    private _route: ActivatedRoute) { }
+  //#endregion
 
+  //#region implemented methods
   ngOnInit(): void {
-    this.getProduct();
+    this.GetProduct();
   }
+  //#endregion
 
-  private getProduct = () => {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.productsService.getProduct(id).subscribe(p => {
-      p.dbPath = this.url + p.dbPath;
+  //#region methods
+  public GetProduct() {
+    const id = Number(this._route.snapshot.paramMap.get('id'));
+    return this._productsService.GetProduct(id).pipe(take(1)).subscribe(p => {
+      p.dbPath = this._url + p.dbPath;
       this.product = p;
     });
   }
-
+  //#endregion
 }

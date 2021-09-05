@@ -10,12 +10,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./laptop-form.component.scss']
 })
 export class LaptopFormComponent implements OnInit {
-  laptopForm!: FormGroup;
+  //#region properties
+  public laptopForm!: FormGroup;
+  //#endregion
+  
+  //#region constructor
+  constructor(
+    private _formBuilder: FormBuilder, 
+    private _service: ActivatedComponentService) { }
+  //#endregion
 
-  constructor(private formBuilder: FormBuilder, private service: ActivatedComponentService) { }
-
+  //#region implemented methods
   ngOnInit(): void {
-    this.laptopForm = this.formBuilder.group({
+    this.laptopForm = this._formBuilder.group({
       name: ['', Validators.required],
       price: [null, Validators.required],
       cpu: ['', Validators.required],
@@ -23,39 +30,42 @@ export class LaptopFormComponent implements OnInit {
       screenSize: [null, Validators.required]
     })
   }
+  //#endregion
 
-  onSubmit(file: any) {
+  //#region methods
+  public OnSubmit(file: any) {
     if (this.laptopForm.invalid || !file || file.length === 0) return;
 
     const stats = new LaptopModel(
-      this.name.value,
-      this.price.value,
-      this.cpu.value,
-      this.graphic.value,
-      this.screenSize.value);
+      this.Name.value,
+      this.Price.value,
+      this.Cpu.value,
+      this.Graphic.value,
+      this.ScreenSize.value);
 
-    (this.service.getComponent as UploadComponent).uploadFile(file, stats);
+    (this._service.Component as UploadComponent).UploadFile(file, stats);
   }
+  //#endregion
 
-
-
-  get name() {
+  //#region getters
+  public get Name() {
     return this.laptopForm.get('name')!;
   }
 
-  get price() {
+  public get Price() {
     return this.laptopForm.get('price')!;
   }
 
-  get cpu() {
+  public get Cpu() {
     return this.laptopForm.get('cpu')!;
   }
 
-  get graphic() {
+  public get Graphic() {
     return this.laptopForm.get('graphic')!;
   }
 
-  get screenSize() {
+  public get ScreenSize() {
     return this.laptopForm.get('screenSize')!;
   }
+  //#endregion
 }

@@ -1,88 +1,114 @@
-import { Observable } from 'rxjs';
-import { NavigationEnd, Router } from '@angular/router';
+import { CommonUrls } from './commonUrls';
+import { Observable, Subject } from 'rxjs';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { UserService } from './Services/user.service';
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
-import { filter } from 'rxjs/operators';
+import { Component, ElementRef, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  @ViewChild('dropmenu')
-  dropMenuEl!: ElementRef;
-  @ViewChild('smallScreenDropMenuTrigger')
-  smalltriger!: ElementRef;
+export class AppComponent implements OnInit, OnDestroy {
+  //#region properties
+  public accountUrl = "";
 
-  selected?: HTMLElement;
-  accountUrl = "";
+  @ViewChild('dropmenu') private _dropMenuEl!: ElementRef;
+  @ViewChild('smallScreenDropMenuTrigger') private _smalltriger!: ElementRef;
 
-  navHighlightOnLoad$: Observable<NavigationEnd>;
+  private _selected?: HTMLElement;
+  private _onNavigationEnd$: Observable<NavigationEnd>;
+  private _onNavigationStart$: Observable<NavigationStart>;
+  private _unsubscribe$ = new Subject<void>();
+  //#endregion
 
-  constructor(private userService: UserService, private router: Router) {
-    this.navHighlightOnLoad$ = this.router.events.pipe(
+  //#region constructor
+  constructor(
+    private _userService: UserService, 
+    private _router: Router) {
+      
+    this._onNavigationEnd$ = this._router.events.pipe(
+      takeUntil(this._unsubscribe$),
       filter(evt => evt instanceof NavigationEnd)
     ) as Observable<NavigationEnd>;
+
+    this._onNavigationStart$ = this._router.events.pipe(
+      takeUntil(this._unsubscribe$),
+      filter(evt => evt instanceof NavigationStart)
+    ) as Observable<NavigationStart>;
+  }
+  //#endregion
+
+  //#region implemented methods
+  ngOnInit(): void {
+    this._onNavigationStart$.subscribe(() => this._userService.Authenticate());
+    this._onNavigationEnd$.subscribe(() => this.HighlightNav());
+    this._userService.isAuth.pipe(takeUntil(this._unsubscribe$)).subscribe(isAuth => this.CheckAuth(isAuth));
   }
 
-  ngOnInit() {
-    this.navHighlightOnLoad$.subscribe(() => { this.highlightNav(); });
-    this.userService.isAuthorizated();
-    this.userService.isAuth.subscribe(is => this.checkAuth(is));
+  ngOnDestroy(): void {
+    this._unsubscribe$.next();
+    this._unsubscribe$.complete();
   }
+  //#endregion
 
-  highlightNav() {
-    const url = this.router.url;
+  //#region methods
+  private HighlightNav(): void {
+    const url = this._router.url;
 
-    this.selected?.classList.remove('selected');
+    const select = (navEl: string) => {
+      this._selected = document.getElementById(navEl)!;
+      this._selected.classList.add("selected");
+    }
+
+    this._selected?.classList.remove('selected');
 
     if (url.includes("main")) {
-      this.selected = document.getElementById("main")!;
-      this.selected.classList.add("selected");
+      select("main");
     }
     else if (url.includes("products")) {
-      this.selected = document.getElementById("products")!;
-      this.selected.classList.add("selected");
+      select("products");
     }
     else if (url.includes("contact")) {
-      this.selected = document.getElementById("contact")!;
-      this.selected.classList.add("selected");
+      select("contact");
     }
     else if (url.includes("account")) {
-      this.selected = document.getElementById("account")!;
-      this.selected.classList.add("selected");
+      select("account");
     }
   }
 
-  checkAuth(is: boolean) {
+  private CheckAuth(isAuth: boolean): void {
     const account = document.getElementById('account');
-    if (is) {
+
+    if (isAuth) {
       account!.innerHTML = "Account";
-      this.accountUrl = "account/details";
+      this.accountUrl = CommonUrls.AccountDetailsPageUrl;
     }
     else {
       account!.innerHTML = "Login";
-      this.accountUrl = "account/login";
+      this.accountUrl = CommonUrls.AccountLoginPageUrl;
     }
   }
 
-  // For small sreen
-  dropMenu(event: Event) {        
-    if (event.currentTarget === this.dropMenuEl.nativeElement || event.currentTarget === this.smalltriger.nativeElement) {
-      if (
-        !(this.dropMenuEl.nativeElement as HTMLElement).classList.contains(
-          'drop'
-        ) &&
-        window.innerWidth < 600
-      ) {
-        (this.dropMenuEl.nativeElement as HTMLElement).classList.add('drop');
-      } else {
-        (this.dropMenuEl.nativeElement as HTMLElement).classList.remove('drop');
+  //#region For small sreen
+  public DropMenu(event: Event): void {
+    const domEl = this._dropMenuEl.nativeElement as HTMLElement;
+
+    if (event.currentTarget === this._dropMenuEl.nativeElement ||
+        event.currentTarget === this._smalltriger.nativeElement) {
+      if (!domEl.classList.contains('drop') && 
+          window.innerWidth < 600) {
+            domEl.classList.add('drop');
+      } 
+      else {
+        domEl.classList.remove('drop');
       }
     }
     else {
-      (this.dropMenuEl.nativeElement as HTMLElement).classList.remove('drop');
+      domEl.classList.remove('drop');
     }
   }
+  //#endregion
+  //#endregion
 }

@@ -16,7 +16,7 @@
                 <td>{{user.email}}</td>
                 <td>{{user.dateOfCreate}}</td>
                 <td>
-                    <select #Role [value]="user.roleName" (change)="changeRole(user.id, Role.value)">
+                    <select #Role [value]="user.roleName" (change)="ChangeRole(user.id, Role.value)">
                         <option value="User">User</option>
                         <option value="Manager">Manager</option>
                         <option value="Admin">Admin</option>

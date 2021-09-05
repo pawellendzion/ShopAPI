@@ -1,8 +1,6 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-export function checkPasswordsValidator(
-  control: AbstractControl
-): ValidationErrors | null {
+export function CheckPasswordsValidator(control: AbstractControl): ValidationErrors | null {
   const password = control.parent?.get('password');
   const confirmPassword = control.parent?.get('confirmPassword');
 
@@ -14,11 +12,13 @@ export function checkPasswordsValidator(
     return null;
   }
 
+  // doesn't set errors for password control
   if (control === password) {
-    confirmPassword?.setErrors({ notMatching: control.value });
+    confirmPassword?.setErrors({ notMatching: true });
     confirmPassword?.updateValueAndValidity();
 
     return null;
   }
-  return isEqual ? null : { notMatching: control.value };
+  
+  return isEqual ? null : { notMatching: true };
 }

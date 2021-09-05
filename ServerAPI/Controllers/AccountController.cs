@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using ServerAPI.Models;
 using ServerAPI.Services;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +23,7 @@ namespace ServerAPI.Controllers
         [HttpPost("login")]
         public async Task<ActionResult> Login([FromBody] LoginDto dto)
         {
-            var jwtToken = await _accountService.Login(dto);
+            var jwtToken = await _accountService.LoginAsync(dto);
 
             return Ok(new { Token = jwtToken });
         }
@@ -34,7 +31,7 @@ namespace ServerAPI.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> Register([FromBody] RegisterDto dto)
         {
-            await _accountService.Register(dto);
+            await _accountService.RegisterAsync(dto);
 
             return Created("", null);
         }
@@ -49,7 +46,7 @@ namespace ServerAPI.Controllers
             var jwtDecoded = decoder.ReadJwtToken(token);
             var id = int.Parse(jwtDecoded.Claims.ToList()[0].Value);
 
-            var details = await _accountService.GetDetails(id);
+            var details = await _accountService.GetDetailsAsync(id);
 
             return Ok(details);
         }
@@ -58,7 +55,7 @@ namespace ServerAPI.Controllers
         [HttpGet("users")]
         public async Task<ActionResult> GetUsers()
         {
-            var users = await _accountService.GetUsers();
+            var users = await _accountService.GetUsersAsync();
 
             return Ok(users);
         }
@@ -67,7 +64,7 @@ namespace ServerAPI.Controllers
         [HttpPatch("users")]
         public async Task<ActionResult> ChangeRole([FromBody]NewRoleModel newRole)
         {
-            await _accountService.ChangeRole(newRole.UserId, newRole.UserNewRole);
+            await _accountService.ChangeRoleAsync(newRole.UserId, newRole.UserNewRole);
 
             return NoContent();
         }

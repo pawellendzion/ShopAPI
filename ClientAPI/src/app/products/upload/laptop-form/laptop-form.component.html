@@ -1,7 +1,7 @@
-<form [formGroup]="laptopForm" (ngSubmit)="onSubmit(file.files)">
+<form [formGroup]="laptopForm" (ngSubmit)="OnSubmit(file.files)">
     <div class="form-element">
         <div>
-            <div class="alert" *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div class="alert" *ngIf="Name.invalid && (Name.dirty || Name.touched)">
                 <div>Name is required</div>
             </div>
         </div>
@@ -12,7 +12,7 @@
     <br>
     <div class="form-element">
         <div>
-            <div class="alert" *ngIf="price.invalid && (price.dirty || price.touched)">
+            <div class="alert" *ngIf="Price.invalid && (Price.dirty || Price.touched)">
                 <div>Price is required</div>
             </div>
         </div>
@@ -23,7 +23,7 @@
     <br>
     <div class="form-element">
         <div>
-            <div class="alert" *ngIf="cpu.invalid && (cpu.dirty || cpu.touched)">
+            <div class="alert" *ngIf="Cpu.invalid && (Cpu.dirty || Cpu.touched)">
                 <div>Cpu is required</div>
             </div>
         </div>
@@ -34,7 +34,7 @@
     <br>
     <div class="form-element">
         <div>
-            <div class="alert" *ngIf="graphic.invalid && (graphic.dirty || graphic.touched)">
+            <div class="alert" *ngIf="Graphic.invalid && (Graphic.dirty || Graphic.touched)">
                 <div>Graphic is required</div>
             </div>
         </div>
@@ -45,7 +45,7 @@
     <br>
     <div class="form-element">
         <div>
-            <div class="alert" *ngIf="screenSize.invalid && (screenSize.dirty || screenSize.touched)">
+            <div class="alert" *ngIf="ScreenSize.invalid && (ScreenSize.dirty || ScreenSize.touched)">
                 <div>Screen size is required</div>
             </div>
         </div>

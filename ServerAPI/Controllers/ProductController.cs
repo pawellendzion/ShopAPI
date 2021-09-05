@@ -48,7 +48,6 @@ namespace ServerAPI.Controllers
                 _dbContext.Entry(product).Property(p => p.dbPath).IsModified = true;
                 await _dbContext.SaveChangesAsync();
 
-
                 return Created("", null);
             }
             else

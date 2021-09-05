@@ -1,7 +1,9 @@
+import { CommonUrls } from './../../commonUrls';
 import { Router } from '@angular/router';
 import { UserService } from './../../Services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from 'src/app/Models/User.model';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-details-page',
@@ -9,16 +11,18 @@ import { UserModel } from 'src/app/Models/User.model';
   styleUrls: ['./details-page.component.scss']
 })
 export class DetailsPageComponent implements OnInit {
-  user!: UserModel;
+  public user!: UserModel;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(
+    private _userService: UserService, 
+    private _router: Router) { }
 
   ngOnInit(): void {
-    this.userService.getDetails().subscribe(data => this.user = data);
+    this._userService.GetDetails().pipe(take(1)).subscribe(data => this.user = data);
   }
 
-  logout() {
-    this.userService.logout();
-    this.router.navigateByUrl("account/login");
+  public Logout(): void {
+    this._userService.Logout();
+    this._router.navigateByUrl(CommonUrls.AccountLoginPageUrl);
   }
 }

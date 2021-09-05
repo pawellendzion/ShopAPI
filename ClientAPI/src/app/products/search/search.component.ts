@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { CommonUrls } from './../../commonUrls';
 import { FilterService } from './../../Services/filter.service';
 import { ActivatedComponentService } from 'src/app/Services/activated-component.service';
 import { ProductModelInterface } from './../../Interfaces/product-model-interface';
@@ -11,29 +13,46 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  //#region properties
+  public products$!: Observable<ProductModelInterface[]>;
+  public productDetailsPageUrl = CommonUrls.ProductDetailsPageUrl + '/';
 
-  products$!: Observable<ProductModelInterface[]>;
-  private searchTerms = new Subject<string>();
+  private _searchTerms = new Subject<string>();
+  //#endregion
 
-  constructor(private filterService: FilterService, private activated: ActivatedComponentService) {}
-
-  show(term: string) {
-    document.getElementById('list')!.style.display = 'none';
-    this.activated.getComponent.show(term);
-  }
-
-  search(term: string) {
-    document.getElementById('list')!.style.display = 'block';
-    this.searchTerms.next(term);
-  }
-
+  //#region constructor
+  constructor(
+    private _filterService: FilterService, 
+    private _activated: ActivatedComponentService,
+    private _router: Router) {}
+  //#endregion
+    
+  //#region implemented methods
   ngOnInit() {
-    this.products$ = this.searchTerms.pipe(
+    this.products$ = this._searchTerms.pipe(
       debounceTime(300),
-
+      
       distinctUntilChanged(),
-
-      switchMap((term: string) => this.filterService.searchProducts(term)),
+      
+      switchMap((term: string) => this._filterService.SearchProducts(term))
     );
   }
+  //#endregion
+
+  //#region methods
+  public ShowProducts(term: string) {
+    // This time out enable work for "routerlink" in template
+    window.setTimeout(() => {
+      if(!this._router.url.includes(CommonUrls.ProductDetailsPageUrl)) {
+        document.getElementById('list')!.style.display = 'none';
+        this._activated.Component.ShowProducts(term);
+      }
+    }, 250);
+  }
+
+  public SearchProducts(term: string) {
+    document.getElementById('list')!.style.display = 'block';
+    this._searchTerms.next(term);
+  }
+  //#endregion
 }
