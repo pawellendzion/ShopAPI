@@ -24,6 +24,7 @@ import { LaptopFilterComponent } from './products/laptop-filter/laptop-filter.co
 import { LaptopBagFilterComponent } from './products/laptop-bag-filter/laptop-bag-filter.component';
 import { DetailsComponent } from './products/details/details.component';
 import { UsersComponent } from './users/users.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -47,6 +48,7 @@ export function tokenGetter() {
     LaptopBagFilterComponent,
     DetailsComponent,
     UsersComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

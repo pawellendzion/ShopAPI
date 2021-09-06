@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UsersGuard } from './users/usersGuard';
 import { UsersComponent } from './users/users.component';
 import { DetailsComponent } from './products/details/details.component';
@@ -27,7 +28,7 @@ const routes: Routes = [
     {path: 'details', component: DetailsPageComponent}
   ]},
   {path: 'users', component: UsersComponent, pathMatch: 'full', canActivate: [UsersGuard]},
-  {path: '**', redirectTo: 'main'}
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

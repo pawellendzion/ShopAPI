@@ -1,0 +1,16 @@
+.wrapper {
+    height: Calc(100vh - var(--nav-height));
+    background-color: var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--light-green);
+    font-family: fantasy;
+    font-weight: bold;
+    font-size: 2rem;
+    
+    div {
+        margin-bottom: var(--nav-height);
+    }
+}
